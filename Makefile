@@ -1,13 +1,13 @@
-NAME     := libasm.a
-SRC_DIR  := srcs
-OBJ_DIR  := objs
-TEST_DIR := test
+NAME      := libasm.a
+SRC_DIR   := srcs
+OBJ_DIR   := objs
+TEST_DIR  := test
 
-CC       := gcc
-AS       := nasm
-AR       := ar rcs
-CFLAGS   := -L. -lasm
-ASFLAGS  := -f elf64
+CC        := gcc
+AS        := nasm
+AR        := ar rcs
+CFLAGS    := -L. -lasm
+ASFLAGS   := -f elf64
 
 SRCS      := $(wildcard $(SRC_DIR)/*.s)
 TEST      := $(wildcard $(TEST_DIR)/*.c)
@@ -33,13 +33,13 @@ $(OBJ_DIR)/test/%.o: $(TEST_DIR)/%.c
 test: $(NAME) | $(TEST_OBJS)
 	$(CC) $(TEST_OBJS) $(CFLAGS) -o tester 
 	./tester
-	rm -f tester
 
 clean:
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f tester
 
 re: fclean all
 
