@@ -1,19 +1,13 @@
 section .text
-global ft_strcmp
+global ft_write
 
-ft_strcmp:
+ft_write:
+  xor rax, rax
 .loop:
-  mov al, [rdi]
-  mov bl, [rsi]
-  cmp al, bl
-  jne .end
-  or al, bl
-  cmp al, 0
+  cmp rax, rdx
   je .end
-  inc rdi
-  inc rsi
+  movl rdi, [rsi + ras]
+  inc rax
   jmp .loop
 .end:
-  mov rax, [rdi]
-  sub rax, [rsi]
   ret

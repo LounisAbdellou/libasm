@@ -1,17 +1,17 @@
 #include <stdio.h>
+#include <unistd.h>
 
-char ft_strcmp(char *str1, char *str2);
+size_t ft_strlen(char *);
+ssize_t ft_write(int fd, const void *buf, size_t count);
 
-void ft_strcmp_test(void) {
-  char *str1 = "Hello World";
-  char *str2 = "1234";
-  char *str3 = "1234";
+void ft_write_test(void) {
+  char *str = "Hello World\n";
 
-  printf("\n--- ft_strcmp ---\n\n");
-  printf("1. \"%s\" and \"%s\" diff is %d\n", str1, str2,
-         ft_strcmp(str1, str2));
-  printf("2. \"%s\" and \"%s\" diff is %d\n", str2, str1,
-         ft_strcmp(str2, str1));
-  printf("3. \"%s\" and \"%s\" diff is %d\n", str2, str3,
-         ft_strcmp(str2, str3));
+  printf("\n--- ft_write ---\n\n");
+  write(1, str, ft_strlen(str));
+  write(1, str, ft_strlen(str) / 2);
+  write(-1, str, ft_strlen(str));
+  write(1, NULL, ft_strlen(str));
+  write(1, NULL, 0);
+  write(1, "\n\n", 2);
 }
